@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/context
+	   https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!--<context:annotation-config/>-->
+
+	<!--<context:component-scan base-package="org"/>-->
+	<bean id="user" class="com.springlearn.iocoverview.domain.User">
+		<property name="id" value="1"></property>
+		<property name="name" value="Danning Wang"></property>
+		<property name="city" value="BEIJING"></property>
+		<property name="workCities" value="BEIJING,HANGZHOU"></property>
+		<property name="liveCities">
+			<list>
+				<value>BEIJING</value>
+				<value>SHANGHAI</value>
+			</list>
+		</property>
+		<property name="configFileLocation" value="classpath:/META-INF/user-config.properties"></property>
+	</bean>
+
+	<bean id="superUser" class="com.springlearn.iocoverview.domain.SuperUser" parent="user" primary="true">
+		<property name="address" value="Beijing"></property>
+	</bean>
+
+	<bean id="objectFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+		<property name="targetBeanName" value="user"></property>
+	</bean>
+</beans>

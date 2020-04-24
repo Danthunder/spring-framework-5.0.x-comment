@@ -1,0 +1,59 @@
+apply plugin: 'idea'
+apply plugin: 'war' // 引入war插件, 它默认包含java插件
+apply plugin: 'com.bmuschko.tomcat' //tomcat: 插件
+
+//plugins {
+//    id 'java'
+//}
+
+group 'org.springframework'
+version '5.0.16.BUILD-SNAPSHOT'
+
+sourceCompatibility = 1.8
+// tomcat: 以下配置会在第一次启动时下载插件二进制文件
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(dir:'lib',includes: ['*jar'])
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile group: 'org.mybatis', name: 'mybatis-spring', version: '1.3.2'
+    compile ("mysql:mysql-connector-java:5.1.24")
+    compile 'org.mybatis:mybatis:3.4.5'
+    compile project(':spring-context')
+    compile project(':spring-webmvc')
+    compile project(':spring-jdbc') // Spring 自带 数据源相关
+    provided group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    def tomcatVersion = '9.0.1'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}", // 核心功能
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.0.M6", //
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}" // tomcat跑webapp时，需要的jsp引擎
+}
+
+// tomcat: 一些协议设置
+tomcat {
+    httpProtocol = 'org.apache.coyote.http11.Http11Nio2Protocol'
+    ajpProtocol  = 'org.apache.coyote.ajp.AjpNio2Protocol'
+}
+
+// UTF-8
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+

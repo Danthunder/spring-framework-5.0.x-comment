@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+
+	<!-- 静态方法实例化 Bean-->
+	<bean id="user-by-static-method" class="com.springlearn.iocoverview.domain.User"
+		  factory-method="createUser"></bean>
+
+	<!-- 实例方法（Bean方法）实例化 Bean-->
+	<bean id="user-by-instance-method" factory-bean="userFactory" factory-method="createUser"></bean>
+
+	<bean id="user-by-factory-bean" class="com.springlearn.springbean.factory.UserFactoryBean"></bean>
+
+	<bean id="userFactory" class="com.springlearn.springbean.factory.DefaultUserFactory"></bean>
+</beans>

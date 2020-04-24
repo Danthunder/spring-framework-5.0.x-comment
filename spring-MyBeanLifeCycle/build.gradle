@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'org.springframework'
+version '5.0.16.BUILD-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+
+
+}
+
+dependencies {
+
+    compile fileTree(dir:'lib',includes: ['*jar'])
+    compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.14'
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile project(':spring-context')
+    compile project(':spring-beans')
+    compile project(':spring-jdbc') // Spring 自带 数据源相关
+    compile project(':spring-MyIoc')
+    provided group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/org.openjdk.jol/jol-core
+    compile group: 'org.openjdk.jol', name: 'jol-core', version: '0.9'
+
+}

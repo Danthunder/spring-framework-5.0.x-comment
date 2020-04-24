@@ -1,0 +1,4 @@
+2020-01-28 20:11:22 下午 [Thread: main][ Class:org.springframework.context.annotation.AnnotationConfigApplicationContext >> Method: org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:640) ]
+INFO:Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@5c29bfd: startup date [Tue Jan 28 20:11:22 CST 2020]; root of context hierarchy
+2020-01-28 20:11:24 下午 [Thread: main][ Class:org.springframework.jdbc.datasource.DriverManagerDataSource >> Method: org.springframework.jdbc.datasource.DriverManagerDataSource.setDriverClassName(DriverManagerDataSource.java:133) ]
+INFO:Loaded JDBC driver: com.mysql.jdbc.Driver
